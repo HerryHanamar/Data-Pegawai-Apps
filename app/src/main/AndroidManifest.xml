@@ -21,7 +21,12 @@
         <activity android:name=".tambahpegawai.TambahPegawaiActivity">
 
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".detailpegawai.DetailPegawaiActivity"/>
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".tampilpegawai.TampilPegawaiActivity"/>
     </application>
 
 </manifest>
