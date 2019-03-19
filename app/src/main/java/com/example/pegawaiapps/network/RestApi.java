@@ -2,6 +2,7 @@ package com.example.pegawaiapps.network;
 
 
 import com.example.pegawaiapps.tambahpegawai.model.ResponseTambahPegawai;
+import com.example.pegawaiapps.tampilpegawai.model.ResponseHapusPegawai;
 import com.example.pegawaiapps.tampilpegawai.model.ResponseTampilPegawai;
 
 import retrofit2.Call;
@@ -22,5 +23,11 @@ public interface RestApi {
     );
     @GET("tampil_pegawai")
     Call<ResponseTampilPegawai> tampil_pegawai();
+
+    @FormUrlEncoded
+    @POST("hapus_pegawai")
+    Call<ResponseHapusPegawai> hapus_pegawai(
+            @Field("id_pegawai") String idPegawai
+    );
 
 }
