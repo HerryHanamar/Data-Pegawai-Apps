@@ -2,10 +2,12 @@ package com.example.pegawaiapps.network;
 
 
 import com.example.pegawaiapps.tambahpegawai.model.ResponseTambahPegawai;
+import com.example.pegawaiapps.tampilpegawai.model.ResponseTampilPegawai;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface RestApi {
@@ -18,4 +20,7 @@ public interface RestApi {
             @Field("no_hp_pegawai") String noHpPegawai,
             @Field("alamat_pegawai") String alamatPegawai
     );
+    @GET("tampil_pegawai")
+    Call<ResponseTampilPegawai> tampil_pegawai();
+
 }
