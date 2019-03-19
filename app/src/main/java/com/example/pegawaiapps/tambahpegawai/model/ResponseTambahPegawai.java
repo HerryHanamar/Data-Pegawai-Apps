@@ -1,4 +1,4 @@
-package com.example.pegawaiapps.model;
+package com.example.pegawaiapps.tambahpegawai.model;
 
 import com.google.gson.annotations.SerializedName;
 

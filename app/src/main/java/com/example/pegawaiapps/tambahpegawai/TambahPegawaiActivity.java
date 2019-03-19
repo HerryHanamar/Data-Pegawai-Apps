@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pegawaiapps.R;
-import com.example.pegawaiapps.model.ResponseTambahPegawai;
+import com.example.pegawaiapps.tambahpegawai.model.ResponseTambahPegawai;
 import com.example.pegawaiapps.network.NetworkClient;
 
 import retrofit2.Call;
@@ -30,7 +30,7 @@ public class TambahPegawaiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tambah_pegawai);
 
         //deklarasi widget view
-        etNama = findViewById(R.id.etAlamatPegawai);
+        etNama = findViewById(R.id.etNamaPegawai);
         etEmail = findViewById(R.id.etEmailPegawai);
         etNoHp = findViewById(R.id.etNoHpPegawai);
         etAlamat = findViewById(R.id.etAlamatPegawai);

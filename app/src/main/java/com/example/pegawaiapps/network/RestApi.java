@@ -1,7 +1,7 @@
 package com.example.pegawaiapps.network;
 
 
-import com.example.pegawaiapps.model.ResponseTambahPegawai;
+import com.example.pegawaiapps.tambahpegawai.model.ResponseTambahPegawai;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
