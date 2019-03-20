@@ -1,6 +1,8 @@
 package com.example.pegawaiapps.tampilpegawai;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,6 +12,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.pegawaiapps.R;
 import com.example.pegawaiapps.network.NetworkClient;
@@ -32,7 +35,9 @@ public class TampilPegawaiActivity extends AppCompatActivity {
     private List<DataItem> dataItemList;
     Button btnTambahPegawai;
 
-    
+    private long backPressedTime;
+    private Toast backToast;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,4 +89,43 @@ public class TampilPegawaiActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onBackPressed(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage("Yakin mau ketemu pak Ndul...dul");
+        builder.setPositiveButton("Mauu dongg", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //TODO : Jika opsi yes dipilih maka kita akan keluar aplikasi
+                finish();
+            }
+        });
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                /*TODO : Jika opsi no dipilih maka dialog akan keluar dan aplikasi akan berlanjut*/
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
+
+    }
+
+//    @Override
+//    public void onBackPressed() {
+//        if (backPressedTime + 2000 > System.currentTimeMillis()){
+//            backToast.cancel();
+//            super.onBackPressed();
+//            return;
+//        }else{
+//            backToast = Toast.makeText(this, "Tekan 2 kali unutuk keluar", Toast.LENGTH_SHORT);
+//            backToast.show();
+//        }
+//        backPressedTime = System.currentTimeMillis();
+//    }
 }
