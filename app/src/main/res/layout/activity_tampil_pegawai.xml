@@ -15,6 +15,12 @@
             android:layout_height="wrap_content"
             android:text="Tambah Pegawai"
             android:id="@+id/btnTambahPegawai"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDialogCustom"
+            android:text="Dialog Custom"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvListPegawai"
             android:layout_width="match_parent"
