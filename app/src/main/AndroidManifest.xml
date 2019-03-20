@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".editpegawai.EditPegawaiActivity"></activity>
         <activity android:name=".tampilpegawai.TampilPegawaiActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,15 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tambahpegawai.TambahPegawaiActivity">
+        <activity android:name=".tambahpegawai.TambahPegawaiActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".detailpegawai.DetailPegawaiActivity" />
 
-        </activity>
-        <activity android:name=".MainActivity">
-        </activity>
-        <activity android:name=".detailpegawai.DetailPegawaiActivity"/>
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".tampilpegawai.TampilPegawaiActivity"/>
+            android:value=".tampilpegawai.TampilPegawaiActivity" />
     </application>
 
 </manifest>

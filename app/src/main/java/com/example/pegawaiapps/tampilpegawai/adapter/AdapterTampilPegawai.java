@@ -9,11 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pegawaiapps.R;
 import com.example.pegawaiapps.detailpegawai.DetailPegawaiActivity;
+import com.example.pegawaiapps.editpegawai.EditPegawaiActivity;
 import com.example.pegawaiapps.network.NetworkClient;
 import com.example.pegawaiapps.tampilpegawai.TampilPegawaiActivity;
 import com.example.pegawaiapps.tampilpegawai.model.DataItem;
@@ -25,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AdapterTampilPegawai  extends RecyclerView.Adapter<AdapterTampilPegawai.MyHolder> {
+public class AdapterTampilPegawai extends RecyclerView.Adapter<AdapterTampilPegawai.MyHolder> {
 
     public AdapterTampilPegawai(Context context, List<DataItem> dataItemList) {
         this.context = context;
@@ -36,12 +38,10 @@ public class AdapterTampilPegawai  extends RecyclerView.Adapter<AdapterTampilPeg
     List<DataItem> dataItemList;
 
 
-
-
     @NonNull
     @Override
     public AdapterTampilPegawai.MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list_pegawai,viewGroup,false);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list_pegawai, viewGroup, false);
         return new MyHolder(itemView);
     }
 
@@ -53,6 +53,18 @@ public class AdapterTampilPegawai  extends RecyclerView.Adapter<AdapterTampilPeg
         myHolder.namaPegawai.setText(dataItem.getNamaPegawai());
         myHolder.emailPegawai.setText(dataItem.getEmailPegawai());
 
+        //TODO : ketika Edit di klik
+        myHolder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditPegawaiActivity.class);
+                intent.putExtra("data_pegawai",dataItem);
+                myHolder.itemView.getContext().startActivity(intent);
+                ((Activity)context).finish();
+
+            }
+        });
+
         //TODO : Ketika Hapus Di kklik
         myHolder.btnHapus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,19 +74,18 @@ public class AdapterTampilPegawai  extends RecyclerView.Adapter<AdapterTampilPeg
                 NetworkClient.service.hapus_pegawai(idPegawai).enqueue(new Callback<ResponseHapusPegawai>() {
                     @Override
                     public void onResponse(Call<ResponseHapusPegawai> call, Response<ResponseHapusPegawai> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             Boolean status = response.body().isStatus();
                             String pesan = response.body().getPesan();
 
-                            if (status){
-                                Intent intent = new Intent(myHolder.itemView.getContext(),TampilPegawaiActivity.class);
+                            if (status) {
+                                Intent intent = new Intent(myHolder.itemView.getContext(), TampilPegawaiActivity.class);
                                 myHolder.itemView.getContext().startActivity(intent);
-                                ((Activity)context).finish();
+                                ((Activity) context).finish();
 
                                 Toast.makeText(context, pesan, Toast.LENGTH_SHORT).show();
 
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(context, pesan, Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -87,7 +98,6 @@ public class AdapterTampilPegawai  extends RecyclerView.Adapter<AdapterTampilPeg
                 });
 
 
-
             }
         });
 
@@ -96,7 +106,7 @@ public class AdapterTampilPegawai  extends RecyclerView.Adapter<AdapterTampilPeg
             @Override
             public void onClick(View v) {
                 //membawa data (put extra)
-                Intent intent = new Intent(myHolder.itemView.getContext(),DetailPegawaiActivity.class);
+                Intent intent = new Intent(myHolder.itemView.getContext(), DetailPegawaiActivity.class);
                 intent.putExtra("data_pegawai", dataItem);
 //                intent.putExtra("nama_pegawai",dataItemList.get(position).getNamaPegawai());
 //                intent.putExtra("email_pegawai",dataItemList.get(position).getEmailPegawai());
@@ -122,15 +132,16 @@ public class AdapterTampilPegawai  extends RecyclerView.Adapter<AdapterTampilPeg
 
     //menyambungkan ke item dari layout item_list_data
     public class MyHolder extends RecyclerView.ViewHolder {
-        public TextView namaPegawai,emailPegawai,idPegawai;
-        Button btnHapus;
+        public TextView namaPegawai, emailPegawai, idPegawai;
+        ImageView btnHapus, btnEdit;
+
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             namaPegawai = itemView.findViewById(R.id.tvNamaPegawai);
             emailPegawai = itemView.findViewById(R.id.tvEmailPegawai);
             btnHapus = itemView.findViewById(R.id.btnHapus);
-
+            btnEdit = itemView.findViewById(R.id.btnEdit);
         }
     }
 
