@@ -77,7 +77,7 @@ public class TampilPegawaiActivity extends AppCompatActivity {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 //TODO : set komponen dialog
-                TextView text = dialog.findViewById(R.id.tvtext);
+                TextView text = dialog.findViewById(R.id.tvText);
                 text.setText("Ingin mengenal pak Ndul");
                 ImageView image = dialog.findViewById(R.id.ivDialog);
                 image.setImageResource(R.drawable.ndul);
